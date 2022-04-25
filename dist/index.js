@@ -11682,7 +11682,7 @@ var __webpack_exports__ = {};
 (() => {
 const core = __nccwpck_require__(8021);
 const github = __nccwpck_require__(4366);
-const { spawnSync } = __nccwpck_require__( 2081 );
+var exec = (__nccwpck_require__(2081).exec);
 
 const {
   promises: fs
@@ -11691,7 +11691,7 @@ const {
 const main = async () => {
   const pathPackage = core.getInput('package-dictionary');
 
-  const gitapi = spawnSync('git', ['diff','HEAD',pathPackage], { encoding : 'utf8' });
+  const gitapi = spawnSync('git', ['diff', 'HEAD', 'package.json'], { encoding: 'utf8' });
   console.log("gitapi", gitapi.stdout)
 
 

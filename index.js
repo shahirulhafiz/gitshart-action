@@ -1,6 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-const { spawnSync } = require( 'child_process' );
+var exec = require('child_process').exec;
 
 const {
   promises: fs
@@ -9,7 +9,7 @@ const {
 const main = async () => {
   const pathPackage = core.getInput('package-dictionary');
 
-  const gitapi = spawnSync('git', ['diff','HEAD',pathPackage], { encoding : 'utf8' });
+  const gitapi = spawnSync('git', ['diff', 'HEAD', 'package.json'], { encoding: 'utf8' });
   console.log("gitapi", gitapi.stdout)
 
 
