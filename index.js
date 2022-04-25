@@ -9,4 +9,4 @@ try {
   core.setOutput("property", 0);
 } catch (error) {
   core.setFailed(error.message);
-}
+} 
