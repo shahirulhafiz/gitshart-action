@@ -11683,7 +11683,7 @@ var __webpack_exports__ = {};
 const core = __nccwpck_require__(8021);
 const github = __nccwpck_require__(4366);
 const util = __nccwpck_require__(3837);
-const spawn = util.promisify((__nccwpck_require__(2081).spawn));
+const exec = util.promisify((__nccwpck_require__(2081).exec));
 
 const {
   promises: fs
@@ -11692,11 +11692,12 @@ const {
 const main = async () => {
   const pathPackage = core.getInput('package-dictionary');
   // git log --follow -p -- package.json
-  const gitapi = spawn('git diff log --follow -p -- package.json', {
-      stdio: 'inherit',
-      shell: true
-   });
-  console.log("gitapi v1", gitapi.stdout)
+  const command = "git diff log --follow -p -- package.json"
+     const {
+      stdout,
+      stderr
+   } = await exec(command);
+  console.log("stdout v1", stdout)
 
   // console.log("Current Directory", __dirname)
   let content = await fs.readFile(pathPackage, 'utf8')

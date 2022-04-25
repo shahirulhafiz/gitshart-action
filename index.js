@@ -1,7 +1,7 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 const util = require('util');
-const spawn = util.promisify(require('child_process').spawn);
+const exec = util.promisify(require('child_process').exec);
 
 const {
   promises: fs
@@ -10,11 +10,12 @@ const {
 const main = async () => {
   const pathPackage = core.getInput('package-dictionary');
   // git log --follow -p -- package.json
-  const gitapi = spawn('git diff log --follow -p -- package.json', {
-      stdio: 'inherit',
-      shell: true
-   });
-  console.log("gitapi v1", gitapi.stdout)
+  const command = "git diff log --follow -p -- package.json"
+     const {
+      stdout,
+      stderr
+   } = await exec(command);
+  console.log("stdout v1", stdout)
 
   // console.log("Current Directory", __dirname)
   let content = await fs.readFile(pathPackage, 'utf8')
