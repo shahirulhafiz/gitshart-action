@@ -11680,6 +11680,7 @@ const {
 
 const main = async () => {
   const pathPackage = core.getInput('package-dictionary');
+  console.log("github", github)
   console.log("Current Directory", __dirname)
   let content = await fs.readFile(pathPackage, 'utf8')
   console.log(`Content: `, content);
