@@ -11675,18 +11675,15 @@ var __webpack_exports__ = {};
 const core = __nccwpck_require__(8021);
 const github = __nccwpck_require__(4366);
 
-try {
-  // `who-to-greet` input defined in action metadata file
-  const nameToGreet = core.getInput('who-to-greet');
-  console.log(`Hello ${nameToGreet}!`);
-  const time = (new Date()).toTimeString();
-  core.setOutput("time", time);
-  // Get the JSON webhook payload for the event that triggered the workflow
-  const payload = JSON.stringify(github.context.payload, undefined, 2)
-  console.log(`The event payload: ${payload}`);
-} catch (error) {
-  core.setFailed(error.message);
-}
+(async () => {
+     const pathPackage = core.getInput('package-dictionary');
+  console.log("Current Directory",__dirname)
+  let content = await fs.readFile(pathPackage, 'utf8')
+  console.log(`Content: `, content);
+  core.setOutput("property", 0);
+})().catch(error => {
+    core.setFailed(error.message);
+});
 })();
 
 module.exports = __webpack_exports__;
