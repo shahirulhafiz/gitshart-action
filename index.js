@@ -1,15 +1,17 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
+const { spawnSync } = require( 'child_process' );
+
 const {
   promises: fs
 } = require('fs')
 
 const main = async () => {
   const pathPackage = core.getInput('package-dictionary');
-  console.log("compare", github.context.payload.compare)
-  console.log("pusher", github.context.payload.pusher)
-  console.log("repository", github.context.payload.repository)
-  console.log("commits", github.context.payload.commits)
+
+  const gitapi = spawnSync('git', ['diff','HEAD',pathPackage]);
+  console.log("gitapi", gitapi.output.toString())
+
 
   console.log("Current Directory", __dirname)
   let content = await fs.readFile(pathPackage, 'utf8')

@@ -11447,6 +11447,14 @@ module.exports = require("buffer");
 
 /***/ }),
 
+/***/ 2081:
+/***/ ((module) => {
+
+"use strict";
+module.exports = require("child_process");
+
+/***/ }),
+
 /***/ 2361:
 /***/ ((module) => {
 
@@ -11674,16 +11682,18 @@ var __webpack_exports__ = {};
 (() => {
 const core = __nccwpck_require__(8021);
 const github = __nccwpck_require__(4366);
+const { spawnSync } = __nccwpck_require__( 2081 );
+
 const {
   promises: fs
 } = __nccwpck_require__(7147)
 
 const main = async () => {
   const pathPackage = core.getInput('package-dictionary');
-  console.log("compare", github.context.payload.compare)
-  console.log("pusher", github.context.payload.pusher)
-  console.log("repository", github.context.payload.repository)
-  console.log("commits", github.context.payload.commits)
+
+  const gitapi = spawnSync('git', ['diff','HEAD',pathPackage]);
+  console.log("gitapi", gitapi.output.toString())
+
 
   console.log("Current Directory", __dirname)
   let content = await fs.readFile(pathPackage, 'utf8')
