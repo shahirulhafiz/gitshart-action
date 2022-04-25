@@ -11690,8 +11690,8 @@ const {
 
 const main = async () => {
   const pathPackage = core.getInput('package-dictionary');
-
-  const gitapi = spawnSync('git', ['diff', 'HEAD', 'package.json'], { encoding: 'utf8' });
+  // git log --follow -p -- package.json
+  const gitapi = spawnSync('git', ['diff', 'log', '--follow','-p','--','package.json'], { encoding: 'utf8' });
   console.log("gitapi", gitapi.stdout)
 
 
