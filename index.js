@@ -1,6 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-const { spawnSync } = require( 'child_process' );
+const spawn = util.promisify(require('child_process').spawn);
 
 const {
   promises: fs
@@ -9,9 +9,11 @@ const {
 const main = async () => {
   const pathPackage = core.getInput('package-dictionary');
   // git log --follow -p -- package.json
-  const gitapi = spawnSync('git diff log --follow -p -- package.json', { encoding: 'utf8' });
-  console.log("gitapi v2", gitapi.stdout)
-
+  const gitapi = spawn('git diff log --follow -p -- package.json', {
+      stdio: 'inherit',
+      shell: true
+   });
+  console.log("gitapi v1", gitapi.stdout)
 
   // console.log("Current Directory", __dirname)
   let content = await fs.readFile(pathPackage, 'utf8')
