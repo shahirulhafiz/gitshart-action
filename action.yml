@@ -1,13 +1,19 @@
-﻿name: "Hello World"
-description: "Greet someone and record the time"
+﻿name: "Auto Deployment"
+description: "Deploy Firebase using Github"
 inputs:
-  who-to-greet: # id of input
-    description: "Who to greet"
+  package-dictionary: # id of input
+    description: "Location package.json"
     required: true
-    default: "World"
+    default: "./package.json"
+
+  properties-name: # id of input
+    description: "property name to extract its value from package.json"
+    required: true
+    default: "version_staging"
+
 outputs:
-  time: # id of output
-    description: "The time we greeted you"
+  property: # id of output
+    description: "property value"
 runs:
   using: "node16"
   main: "dist/index.js"
