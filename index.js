@@ -1,5 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
+const util = require('util');
 const spawn = util.promisify(require('child_process').spawn);
 
 const {
