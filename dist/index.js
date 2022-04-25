@@ -11692,12 +11692,12 @@ const main = async () => {
   const pathPackage = core.getInput('package-dictionary');
 
   const gitapi = spawnSync('git', ['diff','HEAD',pathPackage]);
-  console.log("gitapi", gitapi.output.toString())
+  console.log("gitapi", gitapi)
 
 
-  console.log("Current Directory", __dirname)
+  // console.log("Current Directory", __dirname)
   let content = await fs.readFile(pathPackage, 'utf8')
-  console.log(`Content: `, content);
+  // console.log(`Content: `, content);
   core.setOutput("property", 0);
 }
 
