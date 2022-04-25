@@ -9,8 +9,8 @@ const {
 const main = async () => {
   const pathPackage = core.getInput('package-dictionary');
   // git log --follow -p -- package.json
-  const gitapi = spawnSync('git', ['diff', 'log', '--follow','-p','--','package.json'], { encoding: 'utf8' });
-  console.log("gitapi", gitapi.stdout)
+  const gitapi = spawnSync('git diff log --follow -p -- package.json', { encoding: 'utf8' });
+  console.log("gitapi v2", gitapi.stdout)
 
 
   // console.log("Current Directory", __dirname)
