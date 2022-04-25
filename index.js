@@ -1,5 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
+const { promises: fs } = require('fs')
 
 (async () => {
      const pathPackage = core.getInput('package-dictionary');
