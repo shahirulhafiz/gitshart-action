@@ -11682,7 +11682,7 @@ var __webpack_exports__ = {};
 (() => {
 const core = __nccwpck_require__(8021);
 const github = __nccwpck_require__(4366);
-var exec = (__nccwpck_require__(2081).exec);
+const { spawnSync } = __nccwpck_require__( 2081 );
 
 const {
   promises: fs

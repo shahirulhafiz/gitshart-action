@@ -1,6 +1,6 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
-var exec = require('child_process').exec;
+const { spawnSync } = require( 'child_process' );
 
 const {
   promises: fs
