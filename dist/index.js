@@ -11674,17 +11674,22 @@ var __webpack_exports__ = {};
 (() => {
 const core = __nccwpck_require__(8021);
 const github = __nccwpck_require__(4366);
-const { promises: fs } = __nccwpck_require__(7147)
+const {
+  promises: fs
+} = __nccwpck_require__(7147)
 
-(async () => {
-     const pathPackage = core.getInput('package-dictionary');
-  console.log("Current Directory",__dirname)
-  let content = await fs.readFile(pathPackage, 'utf8')
-  console.log(`Content: `, content);
-  core.setOutput("property", 0);
-})().catch(error => {
+
+async () => {
+  try {
+    const pathPackage = core.getInput('package-dictionary');
+    console.log("Current Directory", __dirname)
+    let content = await fs.readFile(pathPackage, 'utf8')
+    console.log(`Content: `, content);
+    core.setOutput("property", 0);
+  } catch (error) {
     core.setFailed(error.message);
-});
+  }
+}
 })();
 
 module.exports = __webpack_exports__;
