@@ -10,7 +10,7 @@ const main = async () => {
   const pathPackage = core.getInput('package-dictionary');
 
   const gitapi = spawnSync('git', ['diff','HEAD',pathPackage]);
-  console.log("gitapi", gitapi)
+  console.log("gitapi", gitapi.stdout)
 
 
   // console.log("Current Directory", __dirname)
