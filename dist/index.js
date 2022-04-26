@@ -11707,7 +11707,7 @@ const main = async () => {
   const {
     stdout,
     stderr
-  } = await exec(command);
+  } = await exec(command,{maxBuffer: 1024 * 500});
 
   let newRegEx = new RegExp(`"${propertyList}.+?(?=,)`, 'gm');
   let content = stdout.match(newRegEx);
