@@ -11692,26 +11692,28 @@ const {
 const main = async () => {
   const propertiesName = core.getInput('properties-name');
   console.log(propertiesName)
-  
+
   let propertyList = null
   let split = propertiesName.split(",");
-  
+
   if (split.length > 1) {
     propertyList = propertiesName.replace(",", "|");
     propertyList = `(${propertyList})`
+  } else {
+    propertyList = propertiesName
   }
-  
+
   console.log(propertyList)
-  
+
   const command = "git show"
-     const {
-      stdout,
-      stderr
+  const {
+    stdout,
+    stderr
   } = await exec(command);
-  
+
   console.log(stdout)
-  
-  let newRegEx = new RegExp(`(\-|\+)\t"${propertyList}.+?(?=\n)`, 'gm'); 
+
+  let newRegEx = new RegExp(`(-|\+)\t"${propertyList}.+?(?=\n)`, 'gm');
   let content = stdout.match(newRegEx);
   console.log(content)
 
