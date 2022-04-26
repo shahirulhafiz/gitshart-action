@@ -9,6 +9,9 @@ const {
 
 const main = async () => {
   const propertiesName = core.getInput('properties-name');
+
+  console.log(propertiesName)
+  
   let propertyList = propertiesName.replace(",", "|"); 
   
   console.log(propertyList)
