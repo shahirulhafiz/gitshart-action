@@ -28,7 +28,7 @@ const main = async () => {
   //   stderr
   // } = await exec(command, { maxBuffer: 1024 * 500 });
   
-  const {stdout} = await execa('git', ['show']);
+  const {stdout} = await execa('git', ['show','package.json']);
   console.log(stdout);
 
   let newRegEx = new RegExp(`"${propertyList}.+?(?=,)`, 'gm');
