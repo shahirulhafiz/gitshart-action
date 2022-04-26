@@ -11692,7 +11692,7 @@ const {
 const main = async () => {
   const pathPackage = core.getInput('package-dictionary');
   // git log --follow -p -- package.json
-  const command = "git diff log --follow -p -- package.json"
+  const command = "git show"
      const {
       stdout,
       stderr

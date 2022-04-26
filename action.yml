@@ -6,10 +6,10 @@ inputs:
     required: true
     default: "./package.json"
 
-  properties-name: # id of input
-    description: "property name to extract its value from package.json"
-    required: true
-    default: "version_staging"
+  # properties-name: # id of input
+  #   description: "property name to extract its value from package.json"
+  #   required: true
+  #   default: "version_staging"
 
 outputs:
   property: # id of output
