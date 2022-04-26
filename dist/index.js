@@ -11690,23 +11690,18 @@ const {
 } = __nccwpck_require__(7147)
 
 const main = async () => {
-  const pathPackage = core.getInput('package-dictionary');
   const propertiesName = core.getInput('properties-name');
-  let propertyList = propertiesName.split(',');
-  // git log --follow -p -- package.json
-  
+  let propertyList = propertiesName.replace(",", "|"); 
+
   const command = "git show"
      const {
       stdout,
       stderr
-   } = await exec(command);
-  console.log("stdout v1", stdout.trim().split('\r\n'))
+  } = await exec(command);
+  let newRegEx = new RegExp(`(\-|\+)\t"(${propertyList}).+?(?=\n)`, 'gm'); 
+  let content = stdout.match(newRegEx);
+  console.log(content)
 
-
-
-  // console.log("Current Directory", __dirname)
-  let content = await fs.readFile(pathPackage, 'utf8')
-  // console.log(`Content: `, content);
   core.setOutput("property", 0);
 }
 
