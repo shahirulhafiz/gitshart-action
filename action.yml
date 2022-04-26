@@ -1,11 +1,6 @@
 ﻿name: "Auto Deployment"
 description: "Deploy Firebase using Github"
 inputs:
-  package-dictionary: # id of input
-    description: "Location package.json"
-    required: true
-    default: "./package.json"
-
   properties-name: # id of input
     description: "property name to extract its value from package.json"
     required: true

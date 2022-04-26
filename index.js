@@ -29,8 +29,6 @@ const main = async () => {
     stderr
   } = await exec(command);
 
-  console.log(stdout)
-
   let newRegEx = new RegExp(`"${propertyList}.+?(?=,)`, 'gm');
   let content = stdout.match(newRegEx);
   console.log(content)
