@@ -7,7 +7,9 @@ inputs:
     default: 'version,version_staging'
 
 outputs:
-  property: # id of output
+  property-name: # id of output
+    description: "property name"
+  property-value: # id of output
     description: "property value"
 runs:
   using: "node16"

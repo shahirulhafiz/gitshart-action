@@ -21,8 +21,6 @@ const main = async () => {
     propertyList = propertiesName
   }
 
-  console.log(propertyList)
-
   const command = "git show"
   const {
     stdout,
@@ -31,10 +29,15 @@ const main = async () => {
 
   let newRegEx = new RegExp(`"${propertyList}.+?(?=,)`, 'gm');
   let content = stdout.match(newRegEx);
-  console.log(content)
+
   let output = content[1].replace(/[\s"]/g, '');
+  const propertyName = output.split(":")[0]
+  const propertyValue = output.split(":")[1]
   console.log(output)
-  core.setOutput("property",output.split(":")[1]);
+  console.log("name",propertyName)
+  console.log("value",propertyValue)
+  core.setOutput("property-name",propertyName);
+  core.setOutput("property-value",propertyValue);
 }
 
 main().catch(err => core.setFailed(err.message))
