@@ -10,12 +10,17 @@ const {
 const main = async () => {
   const propertiesName = core.getInput('properties-name');
   let propertyList = propertiesName.replace(",", "|"); 
-
+  
+  console.log(propertyList)
+  
   const command = "git show"
      const {
       stdout,
       stderr
   } = await exec(command);
+  
+  console.log(stdout)
+  
   let newRegEx = new RegExp(`(\-|\+)\t"(${propertyList}).+?(?=\n)`, 'gm'); 
   let content = stdout.match(newRegEx);
   console.log(content)
