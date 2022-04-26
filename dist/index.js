@@ -11713,7 +11713,7 @@ const main = async () => {
 
   console.log(stdout)
 
-  let newRegEx = new RegExp(`(-|\+)\t"${propertyList}.+?(?=\n)`, 'gm');
+  let newRegEx = new RegExp(`/(-|\+)\t"${propertyList}.+?(?=\n)/`, 'gm');
   let content = stdout.match(newRegEx);
   console.log(content)
 
