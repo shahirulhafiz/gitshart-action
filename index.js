@@ -31,11 +31,12 @@ const main = async () => {
 
   console.log(stdout)
 
-  let newRegEx = new RegExp(`"${propertyList}.+?(?=\n)`, 'gm');
+  let newRegEx = new RegExp(`"${propertyList}.+?(?=,)`, 'gm');
   let content = stdout.match(newRegEx);
   console.log(content)
-
-  core.setOutput("property", 0);
+  let output = content[1].replace(/[\s"]/g, '');
+  console.log(output)
+  core.setOutput("property",output.split(":")[1]);
 }
 
 main().catch(err => core.setFailed(err.message))
