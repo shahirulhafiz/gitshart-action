@@ -1,7 +1,8 @@
 const core = require('@actions/core');
 const github = require('@actions/github');
 const util = require('util');
-const exec = util.promisify(require('child_process').exec);
+// const exec = util.promisify(require('child_process').exec);
+import {execa} from 'execa';
 
 const {
   promises: fs
@@ -21,11 +22,14 @@ const main = async () => {
     propertyList = propertiesName
   }
 
-  const command = "git show"
-  const {
-    stdout,
-    stderr
-  } = await exec(command,{maxBuffer: 1024 * 500});
+  // const command = "git show"
+  // const {
+  //   stdout,
+  //   stderr
+  // } = await exec(command, { maxBuffer: 1024 * 500 });
+  
+  const {stdout} = await execa('git', ['show']);
+  console.log(stdout);
 
   let newRegEx = new RegExp(`"${propertyList}.+?(?=,)`, 'gm');
   let content = stdout.match(newRegEx);
