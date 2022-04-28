@@ -32,14 +32,28 @@ const main = async () => {
   let content = stdout.match(newRegEx);
   console.log(content);
 
-  let output = content[1].replace(/[\s"]/g, '');
-  const propertyName = output.split(":")[0]
-  const propertyValue = output.split(":")[1]
+  // [ '"version": "1.3.6.2"', '"version_staging": "1.4.4.4"' ]
+  
+
+  let output = {}
+  content.forEach((env) => {
+    // let output = env
+    let [key, value] = env.split(":")
+    const flatKey = key.replace(/[\s"]/g, '');
+    const flatValue = value.replace(/[\s"]/g, '');
+    output = {
+      ...output,
+      [flatKey]:flatValue
+    }
+});
+  
+  // 
+
+
   console.log(output)
-  console.log("name",propertyName)
-  console.log("value",propertyValue)
-  core.setOutput("property-name",propertyName);
-  core.setOutput("property-value",propertyValue);
+  // console.log("name",propertyName)
+  // console.log("value",propertyValue)
+  core.setOutput("env-prop",output);
 }
 
 main().catch(err => core.setFailed(err.message))

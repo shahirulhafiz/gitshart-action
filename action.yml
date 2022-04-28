@@ -7,10 +7,8 @@ inputs:
     default: 'version,version_staging'
 
 outputs:
-  property-name: # id of output
-    description: "property name"
-  property-value: # id of output
-    description: "property value"
+  env-prop: # id of output
+    description: "Environment Deployment"
 runs:
   using: "node16"
   main: "dist/index.js"
