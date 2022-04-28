@@ -33,7 +33,6 @@ const main = async () => {
   console.log(content);
 
   // [ '"version": "1.3.6.2"', '"version_staging": "1.4.4.4"' ]
-  
 
   let output = {}
   content.forEach((env) => {
@@ -47,12 +46,7 @@ const main = async () => {
     }
 });
   
-  // 
-
-
   console.log(output)
-  // console.log("name",propertyName)
-  // console.log("value",propertyValue)
   core.setOutput("env-prop",output);
 }
 
