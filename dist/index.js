@@ -14201,7 +14201,10 @@ const main = async () => {
     propertyList = propertiesName
   }
   
-  const {stdout} = await execa('git', ['show','-m','package.json']);
+
+  // git diff commit^!
+  // const { stdout } = await execa('git', ['show', '-m', 'package.json']);
+  const {stdout} = await execa('git', ['diff','commit^!','package.json']);
   console.log(stdout);
 
   console.log("regex :",`"${propertyList}.+?(?=,)`)
