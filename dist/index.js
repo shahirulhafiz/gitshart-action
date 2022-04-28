@@ -14226,7 +14226,7 @@ const main = async () => {
 });
   
   console.log(output)
-  core.setOutput("env-prop",output);
+  core.setOutput("env-prop",JSON.stringify(output));
 }
 
 main().catch(err => core.setFailed(err.message))
