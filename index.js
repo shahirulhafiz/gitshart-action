@@ -46,8 +46,9 @@ const main = async () => {
     }
 });
   
-  console.log(output)
-  core.setOutput("env-prop",JSON.stringify(output));
+  const outString = JSON.stringify(output)
+  console.log("outString ",outString)
+  core.setOutput("env-prop",outString);
 }
 
 main().catch(err => core.setFailed(err.message))
