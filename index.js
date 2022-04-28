@@ -21,18 +21,13 @@ const main = async () => {
   } else {
     propertyList = propertiesName
   }
-
-  // const command = "git show"
-  // const {
-  //   stdout,
-  //   stderr
-  // } = await exec(command, { maxBuffer: 1024 * 500 });
   
   const {stdout} = await execa('git', ['show','package.json']);
   console.log(stdout);
 
   let newRegEx = new RegExp(`"${propertyList}.+?(?=,)`, 'gm');
   let content = stdout.match(newRegEx);
+  console.log(content);
 
   let output = content[1].replace(/[\s"]/g, '');
   const propertyName = output.split(":")[0]
